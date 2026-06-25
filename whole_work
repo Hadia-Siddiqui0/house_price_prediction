@@ -1,0 +1,63 @@
+1. Project Goal:
+   This project predicts house prices based on multiple property features including
+   area, number of bedrooms, bathrooms, and amenities. Built as a practical
+   application of linear regression on real estate data.
+
+2. Dataset:
+   Kaggle Housing dataset containing 545 properties with 12 input features and
+   one target variable (price). Features include both numerical values like area
+   and bedrooms, and categorical values like mainroad access, furnishing status,
+   and air conditioning.
+
+3. EDA Findings:
+   No missing values were found in this dataset. Statistical analysis revealed
+   mean price (4.76M) is greater than median (4.34M), indicating right skew,
+   a small number of very expensive properties are pulling the average upward.
+   This suggested the presence of high-value outliers which were later confirmed
+   through RMSE analysis.
+
+4. Methodology:
+
+   a. EDA: Explored dataset structure, checked for missing values, and
+   analyzed statistical distributions of all features.
+
+   b. Feature Relationships: Investigated relationships through scatter plots,
+   boxplots for categorical features, and a correlation matrix to identify
+   which features impact price most strongly.
+
+   c. Missing Data: No missing values were found so no imputation was required.
+
+   d. Train Test Split: Dataset split into 70% training and 30% test set before
+   any preprocessing to prevent data leakage.
+
+   e. Feature Engineering: Created a new feature area_parking by combining area
+   and parking columns, which showed strong correlation with price. This was
+   done after splitting to avoid data leakage.
+
+   f. Model Building: Trained a Linear Regression model using 3-fold cross
+   validation to evaluate reliability before final training.
+
+   g. Visualization: Three plots were used to evaluate model performance —
+   actual vs predicted values showing linear relationship, residual plot
+   confirming homoscedasticity, and coefficient plot identifying most
+   important features.
+
+   h. Evaluation: Model evaluated using MAE, MSE, RMSE and R² score.
+
+5. Results:
+   R² = 0.64 means the model explains 64% of house price variation through
+   input features. The remaining 36% is influenced by factors not captured
+   in the dataset such as location quality, neighborhood, and market conditions.
+
+6. Key Observation:
+   RMSE (1,238,970) is significantly higher than MAE (925,543). This gap
+   indicates outlier properties are disproportionately inflating the error —
+   a sign that outlier removal could meaningfully improve model performance.
+   This was identified as the primary limitation of the current model.
+
+7. Future Improvements:
+   Primary improvement is outlier removal using IQR method before model
+   training. Additional improvements include trying polynomial regression
+   to capture non-linear relationships, adding interaction features beyond
+   area_parking, and exploring more advanced models like Random Forest
+   for comparison.
